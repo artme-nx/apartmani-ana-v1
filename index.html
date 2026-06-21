@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apartmani Ana — Šibenik, 50 m od mora</title>
+<meta name="description" content="Apartmani Ana u Šibeniku — 300 m od UNESCO starog grada, 50 m od mora. Obiteljski apartmani s pogledom, udobnošću i mirom dalmatinskog kamenog grada." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg-base:#F6F4F0;
+    --bg-alt:#ECEAE3;
+    --bg-dark:#1C1B19;
+    --text-dark:#2A2824;
+    --text-mid:#7A7570;
+    --accent:#3D7B8C;     /* Adriatic teal */
+    --accent-soft:#559EAF;
+    --stone:#9E9890;
+    --line-light:rgba(42,40,36,0.13);
+    --line-dark:rgba(246,244,240,0.12);
+    --cream-dim:rgba(246,244,240,0.75);
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'DM Sans', system-ui, sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:auto;}
+  body{
+    font-family:var(--font-body);
+    font-size:17px;
+    line-height:1.72;
+    color:var(--text-dark);
+    background:var(--bg-base);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 36px;}
+
+  h1,h2,h3{font-family:var(--font-display);font-weight:300;line-height:1.06;letter-spacing:0.01em;}
+  .serif-italic{font-family:var(--font-display);font-style:italic;font-weight:300;}
+
+  .eyebrow{
+    font-family:var(--font-body);
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:0.22em;
+    font-weight:500;
+    color:var(--accent);
+  }
+
+  /* ─── CURSOR ─── */
+  .cursor{
+    position:fixed;width:10px;height:10px;
+    background:var(--accent);border-radius:50%;
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:transform 0.15s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    opacity:0;
+  }
+  @media(hover:none){.cursor{display:none;}}
+
+  /* ─── HEADER ─── */
+  header.site{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:22px 36px;
+    transition:background .5s ease, padding .5s ease, box-shadow .5s ease;
+  }
+  header.site.scrolled{
+    background:rgba(246,244,240,0.95);
+    backdrop-filter:blur(12px);
+    padding:14px 36px;
+    box-shadow:0 1px 0 var(--line-light);
+  }
+  .brand{
+    font-family:var(--font-display);
+    font-size:22px;letter-spacing:0.03em;color:#F6F4F0;
+    white-space:nowrap;transition:color .4s ease;
+  }
+  .brand em{font-style:italic;color:var(--accent-soft);}
+  header.site.scrolled .brand{color:var(--text-dark);}
+  header.site.scrolled .brand em{color:var(--accent);}
+
+  nav.center{justify-self:center;display:flex;gap:32px;}
+  nav.center a{
+    text-transform:uppercase;font-size:11px;letter-spacing:0.16em;
+    color:var(--cream-dim);font-weight:500;position:relative;padding:4px 0;
+    transition:color .3s ease;
+  }
+  nav.center a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--accent-soft);transition:width .35s ease;
+  }
+  nav.center a:hover{color:#F6F4F0;}
+  nav.center a:hover::after{width:100%;}
+  header.site.scrolled nav.center a{color:var(--text-mid);}
+  header.site.scrolled nav.center a:hover{color:var(--text-dark);}
+
+  .cta-wrap{justify-self:end;display:flex;align-items:center;gap:16px;}
+  .btn-primary{
+    display:inline-block;background:var(--accent);color:#F6F4F0;
+    text-transform:uppercase;font-size:11px;letter-spacing:0.16em;font-weight:500;
+    padding:12px 22px;border-radius:2px;
+    transition:background .3s ease, transform .2s ease;
+    white-space:nowrap;
+  }
+  .btn-primary:hover{background:var(--accent-soft);transform:translateY(-1px);}
+
+  .hamburger{
+    display:none;flex-direction:column;gap:5px;cursor:pointer;
+    background:none;border:none;padding:6px;z-index:120;
+  }
+  .hamburger span{display:block;width:26px;height:2px;background:#F6F4F0;transition:transform .35s ease, opacity .35s ease, background .4s ease;}
+  header.site.scrolled .hamburger span{background:var(--text-dark);}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* fullscreen mobile menu */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:110;
+    background:var(--bg-dark);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;opacity:0;pointer-events:none;
+    transition:opacity .5s ease;
+  }
+  .mobile-menu.open{opacity:1;pointer-events:all;}
+  .mobile-menu a{
+    font-family:var(--font-display);font-size:34px;color:#F6F4F0;
+    padding:10px 0;letter-spacing:0.02em;
+  }
+  .mobile-menu a.accent{font-style:italic;color:var(--accent-soft);font-size:26px;margin-top:18px;}
+
+  /* ─── HERO ─── */
+  .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--bg-dark);}
+  .hero-bg{position:absolute;inset:-2%;will-change:transform;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;}
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(28,27,25,0.45) 0%, rgba(28,27,25,0.18) 45%, rgba(28,27,25,0.72) 100%);
+  }
+  .hero-content{
+    position:absolute;inset:0;z-index:3;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 28px;
+  }
+  .hero-eyebrow{color:rgba(246,244,240,0.78);margin-bottom:28px;}
+  .hero h1{
+    font-weight:300;font-style:italic;color:#F6F4F0;
+    font-size:clamp(42px,7vw,88px);
+    max-width:16ch;line-height:1.06;
+    text-shadow:0 2px 40px rgba(0,0,0,0.30);
+  }
+  .hero-sub{
+    margin-top:26px;color:var(--cream-dim);
+    font-size:16px;letter-spacing:0.03em;max-width:44ch;line-height:1.65;
+  }
+  .scroll-ind{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    color:rgba(246,244,240,0.65);text-transform:uppercase;font-size:10px;letter-spacing:0.2em;
+  }
+  .scroll-ind .line{width:1px;height:46px;background:rgba(246,244,240,0.35);overflow:hidden;position:relative;}
+  .scroll-ind .line::after{
+    content:'';position:absolute;top:-46px;left:0;width:100%;height:46px;
+    background:var(--accent-soft);animation:scrollLine 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollLine{0%{top:-46px;}60%,100%{top:46px;}}
+
+  /* word reveal */
+  .word{display:inline-block;overflow:hidden;vertical-align:top;}
+  .word-inner{display:inline-block;}
+
+  /* ─── SECTION BASE ─── */
+  section{position:relative;}
+  .section-pad{padding:120px 0;}
+  .section-alt{background:var(--bg-alt);}
+  .section-dark{background:var(--bg-dark);color:#F6F4F0;}
+  .reveal{opacity:0;transform:translateY(22px);}
+
+  /* ─── MANIFEST ─── */
+  .manifest{text-align:center;}
+  .manifest .eyebrow{display:block;margin-bottom:28px;}
+  .manifest p.lead{
+    font-family:var(--font-display);font-weight:300;
+    font-size:clamp(26px,3.8vw,44px);
+    line-height:1.38;max-width:20ch;margin:0 auto 28px;color:var(--text-dark);
+  }
+  .manifest p.lead em{font-style:italic;color:var(--accent);}
+  .manifest p.body{
+    max-width:600px;margin:0 auto;color:var(--text-mid);
+    font-size:17px;line-height:1.8;
+  }
+  .divider{width:54px;height:1px;background:var(--accent);margin:36px auto;}
+
+  /* ─── APARTMENTS / ROOMS ─── */
+  .rooms-head{text-align:center;margin-bottom:70px;}
+  .rooms-head h2{font-size:clamp(38px,5.5vw,64px);margin-top:14px;color:var(--text-dark);}
+  .rooms-head .sub{font-style:italic;font-family:var(--font-display);font-size:20px;color:var(--text-mid);margin-top:14px;}
+
+  .rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .room-card{background:var(--bg-base);border-radius:4px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,0.06);}
+  .room-card-img{position:relative;aspect-ratio:4/3;overflow:hidden;}
+  .room-card-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 1.1s cubic-bezier(.2,.7,.2,1);
+  }
+  .room-card:hover .room-card-img img{transform:scale(1.05);}
+  .room-tag{
+    position:absolute;top:16px;left:16px;
+    background:rgba(28,27,25,0.72);backdrop-filter:blur(4px);
+    color:#F6F4F0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+    padding:5px 12px;border-radius:2px;font-family:var(--font-body);font-weight:500;
+  }
+  .room-card-body{padding:28px 28px 32px;}
+  .room-card-body h3{
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(22px,2.2vw,28px);color:var(--text-dark);margin-bottom:10px;
+  }
+  .room-card-body h3 em{font-style:italic;color:var(--accent);}
+  .room-card-body p{color:var(--text-mid);font-size:15px;line-height:1.65;margin-bottom:18px;}
+  .room-amenities{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .room-amenities span{
+    font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+    color:var(--text-mid);border:1px solid var(--line-light);
+    padding:4px 10px;border-radius:2px;
+  }
+  .room-cta{
+    display:inline-block;
+    color:var(--accent);font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;
+    border-bottom:1px solid var(--accent);padding-bottom:2px;
+    transition:color .3s ease, border-color .3s ease;
+  }
+  .room-cta:hover{color:var(--accent-soft);border-color:var(--accent-soft);}
+
+  /* ─── LOCATION STRIP ─── */
+  .loc-strip{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;}
+  .loc-text{padding:90px 70px;display:flex;flex-direction:column;justify-content:center;}
+  .loc-text .eyebrow{display:block;margin-bottom:22px;}
+  .loc-text h2{font-size:clamp(34px,4.4vw,54px);color:var(--text-dark);margin-bottom:24px;line-height:1.06;}
+  .loc-text h2 em{font-style:italic;color:var(--accent);}
+  .loc-text p{color:var(--text-mid);margin-bottom:16px;max-width:42ch;line-height:1.75;}
+  .loc-facts{display:flex;gap:36px;margin-top:30px;flex-wrap:wrap;}
+  .loc-facts .f .n{
+    font-family:var(--font-display);font-size:38px;color:var(--accent);line-height:1;font-weight:300;
+  }
+  .loc-facts .f .l{font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-mid);margin-top:8px;}
+  .loc-map{min-height:480px;}
+  .loc-map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(0.2) contrast(1.02);}
+
+  /* ─── THINGS TO DO ─── */
+  .todo-head{text-align:center;margin-bottom:64px;}
+  .todo-head h2{font-size:clamp(36px,5vw,60px);margin-top:14px;color:#F6F4F0;}
+  .todo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .todo-card{text-align:center;padding:36px 22px;}
+  .todo-icon{font-size:32px;margin-bottom:18px;}
+  .todo-card h3{
+    font-family:var(--font-display);font-weight:400;font-style:italic;
+    font-size:22px;color:#F6F4F0;margin-bottom:12px;
+  }
+  .todo-card p{font-size:14px;color:rgba(246,244,240,0.68);line-height:1.65;}
+
+  /* ─── GALLERY ─── */
+  .gallery-head{text-align:center;margin-bottom:56px;}
+  .gallery-head h2{font-size:clamp(36px,5vw,60px);margin-top:14px;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:220px;
+    gap:14px;
+  }
+  .gallery-grid figure{overflow:hidden;border-radius:3px;}
+  .gallery-grid img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .9s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+    filter:contrast(1.02) saturate(0.96);
+  }
+  .gallery-grid figure:hover img{transform:scale(1.05);filter:contrast(1.04) saturate(1.06);}
+  .g-tall{grid-row:span 2;}
+  .g-wide{grid-column:span 2;}
+
+  /* ─── BOOKING / ENQUIRY ─── */
+  .book-block{display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center;}
+  .book-text .eyebrow{display:block;margin-bottom:22px;}
+  .book-text h2{font-size:clamp(36px,5vw,60px);color:var(--text-dark);line-height:1.04;margin-bottom:22px;}
+  .book-text h2 em{font-style:italic;color:var(--accent);}
+  .book-text p{color:var(--text-mid);max-width:44ch;margin-bottom:30px;}
+  .book-actions{display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+  .book-actions a.big{
+    font-family:var(--font-display);font-size:28px;font-weight:300;color:var(--text-dark);
+    display:inline-flex;align-items:center;gap:14px;transition:color .3s ease;
+  }
+  .book-actions a.big:hover{color:var(--accent);}
+  .book-actions a.big .ic{color:var(--accent);font-size:18px;}
+  .book-panel{background:var(--bg-alt);border-radius:6px;padding:46px 44px;border:1px solid var(--line-light);}
+  .book-panel h3{
+    font-family:var(--font-display);font-style:italic;font-weight:300;
+    font-size:26px;color:var(--accent);margin-bottom:24px;
+  }
+  .form-row{margin-bottom:18px;}
+  .form-row label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:var(--text-mid);margin-bottom:7px;font-weight:500;}
+  .form-row input,.form-row textarea,.form-row select{
+    width:100%;border:1px solid var(--line-light);border-radius:3px;
+    padding:13px 14px;font-family:var(--font-body);font-size:15px;color:var(--text-dark);
+    background:var(--bg-base);transition:border-color .3s ease;outline:none;
+  }
+  .form-row input:focus,.form-row textarea:focus,.form-row select:focus{border-color:var(--accent);}
+  .form-row textarea{min-height:90px;resize:vertical;}
+  .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .btn-submit{
+    width:100%;background:var(--accent);color:#F6F4F0;
+    border:none;cursor:pointer;padding:15px;border-radius:3px;
+    font-family:var(--font-body);font-size:12px;letter-spacing:0.18em;
+    text-transform:uppercase;font-weight:500;
+    transition:background .3s ease, transform .2s ease;
+  }
+  .btn-submit:hover{background:var(--accent-soft);transform:translateY(-1px);}
+
+  /* ─── FOOTER ─── */
+  footer.site{background:var(--bg-dark);color:#F6F4F0;padding:80px 0 40px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid var(--line-dark);}
+  .foot-brand .brand-f{font-family:var(--font-display);font-size:28px;letter-spacing:0.03em;color:#F6F4F0;margin-bottom:16px;}
+  .foot-brand .brand-f em{font-style:italic;color:var(--accent-soft);}
+  .foot-brand p{color:var(--cream-dim);max-width:32ch;font-size:15px;line-height:1.7;}
+  .foot-col h4{font-family:var(--font-body);text-transform:uppercase;font-size:11px;letter-spacing:0.18em;color:var(--stone);margin-bottom:18px;}
+  .foot-col a,.foot-col p{display:block;color:var(--cream-dim);font-size:15px;margin-bottom:11px;transition:color .3s ease;}
+  .foot-col a:hover{color:var(--accent-soft);}
+  .foot-bottom{padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--stone);letter-spacing:0.04em;}
+
+  /* ─── STICKY MOBILE BAR ─── */
+  .mobile-bar{
+    position:fixed;left:0;bottom:0;width:100%;z-index:90;
+    display:none;padding:12px 16px;
+    background:rgba(28,27,25,0.97);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line-dark);
+  }
+  .mobile-bar-inner{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .mobile-bar a{
+    display:block;text-align:center;
+    text-transform:uppercase;font-size:11px;letter-spacing:0.14em;font-weight:500;
+    padding:14px;border-radius:3px;
+  }
+  .mobile-bar a.call{background:var(--accent);color:#F6F4F0;}
+  .mobile-bar a.wa{background:rgba(37,211,102,0.15);color:#25D366;border:1px solid rgba(37,211,102,0.3);}
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:1000px){
+    .rooms-grid{grid-template-columns:1fr 1fr;gap:22px;}
+    .loc-strip{grid-template-columns:1fr;}
+    .loc-text{padding:64px 36px;}
+    .loc-map{min-height:380px;}
+    .book-block{grid-template-columns:1fr;gap:48px;}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px;}
+    .foot-brand{grid-column:1/-1;}
+    .todo-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media(max-width:768px){
+    header.site{grid-template-columns:1fr auto;padding:16px 20px;}
+    header.site.scrolled{padding:12px 20px;}
+    nav.center,.cta-wrap .btn-primary{display:none;}
+    .hamburger{display:flex;}
+    .wrap{padding:0 20px;}
+    .section-pad{padding:80px 0;}
+    .rooms-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px;gap:10px;}
+    .loc-facts{gap:24px;}
+    .book-panel{padding:32px 24px;}
+    .form-row-2{grid-template-columns:1fr;}
+    .mobile-bar{display:block;}
+    footer.site{padding-bottom:100px;}
+    .hero{min-height:560px;}
+  }
+  @media(max-width:480px){
+    .foot-grid{grid-template-columns:1fr;}
+    .todo-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;}
+    .reveal{opacity:1!important;transform:none!important;}
+    .scroll-ind .line::after{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+
+<!-- HEADER -->
+<header class="site" id="header">
+  <a class="brand" href="#vrh">Apartmani <em>Ana</em></a>
+  <nav class="center">
+    <a href="#apartmani">Apartmani</a>
+    <a href="#lokacija">Lokacija</a>
+    <a href="#sto-vidjeti">Šibenik</a>
+    <a href="#galerija">Galerija</a>
+    <a href="#rezervacija">Rezervacija</a>
+  </nav>
+  <div class="cta-wrap">
+    <a class="btn-primary" href="#rezervacija">Upit / Rezervacija</a>
+    <button class="hamburger" id="hamburger" aria-label="Izbornik">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#apartmani">Apartmani</a>
+  <a href="#lokacija">Lokacija</a>
+  <a href="#sto-vidjeti">Šibenik</a>
+  <a href="#galerija">Galerija</a>
+  <a href="#rezervacija">Rezervacija</a>
+  <a class="accent" href="tel:+38522214827">Pozovite nas →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="vrh">
+  <div class="hero-bg" id="heroBg">
+    <img src="https://loremflickr.com/1920/1280/adriatic,sea,dalmatia,view?lock=4481" alt="Pogled na Jadransko more iz Šibenika" loading="eager" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow hero-eyebrow">Šibenik · 50 m od mora · 300 m od starog grada</span>
+    <h1 data-split>Kamen, more i jutarnji mir.</h1>
+    <p class="hero-sub">Obiteljski apartmani u srcu dalmatinskoga Šibenika — na korak do UNESCO katedrale, pedeset metara od obale.</p>
+  </div>
+  <div class="scroll-ind"><span>Istraži</span><span class="line"></span></div>
+</section>
+
+<!-- MANIFEST -->
+<section class="section-pad manifest" id="o-nama">
+  <div class="wrap">
+    <span class="eyebrow reveal">Naša priča</span>
+    <div class="divider reveal"></div>
+    <p class="lead reveal">Apartmani Ana — <em>mirno utočište</em> u kamenom gradu.</p>
+    <p class="body reveal">
+      Na svega tri minute hoda od Katedrale sv. Jakova i pedeset metara od morske obale, Apartmani Ana nude ono što je u Dalmaciji sve teže naći: autentičan smještaj bez žurbe, u privatnoj kući s pažnjom domaćina. Svaki apartman nosi vlastito ime i karakter — jer ni jedno ljeto u Šibeniku nije isto kao ono prošlo.
+    </p>
+  </div>
+</section>
+
+<!-- APARTMENTS -->
+<section class="section-pad section-alt" id="apartmani">
+  <div class="wrap">
+    <div class="rooms-head">
+      <span class="eyebrow reveal">Smještaj</span>
+      <h2 class="reveal" data-split>Svaki apartman — priča za sebe</h2>
+      <p class="sub reveal">Četiri jedinice, svaka s vlastitim karakterom i pogledom.</p>
+    </div>
+    <div class="rooms-grid">
+
+      <!-- Apartment 1 -->
+      <div class="room-card reveal">
+        <div class="room-card-img">
+          <img src="https://loremflickr.com/800/600/apartment,interior,bright,mediterranean?lock=8821" alt="Apartman Kaldera" loading="lazy" />
+          <span class="room-tag">2–4 osobe</span>
+        </div>
+        <div class="room-card-body">
+          <h3><em>Kaldera</em> — s pogledom na more</h3>
+          <p>Prostrani apartman s terasom orijentiranom prema moru i Šibenskim kanalom. Ručno rađeni kamen, bijeli lineni tekstili, jutra uz zvuk valova.</p>
+          <div class="room-amenities">
+            <span>Terasa</span><span>Klima</span><span>Wi-Fi</span><span>Kuhinja</span><span>Pogled more</span>
+          </div>
+          <a class="room-cta" href="#rezervacija">Upit za termin →</a>
+        </div>
+      </div>
+
+      <!-- Apartment 2 -->
+      <div class="room-card reveal">
+        <div class="room-card-img">
+          <img src="https://loremflickr.com/800/600/bedroom,bright,dalmatian,stone?lock=3347" alt="Apartman Sv. Jakov" loading="lazy" />
+          <span class="room-tag">2 osobe</span>
+        </div>
+        <div class="room-card-body">
+          <h3><em>Sv. Jakov</em> — uz UNESCO grad</h3>
+          <p>Kompaktan i elegantan, smješten s pogledom na tornjeve starog Šibenika. Kanonska katedrala vidljiva iz prozora — idealno za par koji traži mir.</p>
+          <div class="room-amenities">
+            <span>Pogled grad</span><span>Klima</span><span>Wi-Fi</span><span>Kuhinja</span>
+          </div>
+          <a class="room-cta" href="#rezervacija">Upit za termin →</a>
+        </div>
+      </div>
+
+      <!-- Apartment 3 -->
+      <div class="room-card reveal">
+        <div class="room-card-img">
+          <img src="https://loremflickr.com/800/600/terrace,sea,view,summer?lock=9914" alt="Apartman Šibenska roza" loading="lazy" />
+          <span class="room-tag">2–5 osoba</span>
+        </div>
+        <div class="room-card-body">
+          <h3><em>Šibenska roza</em> — za obitelje</h3>
+          <p>Najveća jedinica s dvije spavaće sobe, dječjim krevetom i velikom terasom. Ljetna večera na terasi uz zalazak — to je Šibenska roza.</p>
+          <div class="room-amenities">
+            <span>2 spavaće</span><span>Terasa</span><span>Klima</span><span>Wi-Fi</span><span>Kuhinja</span>
+          </div>
+          <a class="room-cta" href="#rezervacija">Upit za termin →</a>
+        </div>
+      </div>
+
+      <!-- Apartment 4 -->
+      <div class="room-card reveal" style="display:none;" id="room4-desktop"><!-- fills row on larger screens if added --></div>
+
+    </div>
+
+    <!-- 4th card added inline -->
+    <div class="rooms-grid" style="margin-top:28px;">
+      <div class="room-card reveal" style="grid-column:1;">
+        <div class="room-card-img">
+          <img src="https://loremflickr.com/800/600/apartment,cozy,interior,adriatic?lock=2263" alt="Studio Fortika" loading="lazy" />
+          <span class="room-tag">1–2 osobe</span>
+        </div>
+        <div class="room-card-body">
+          <h3><em>Fortika</em> — studio uz tvrđavu</h3>
+          <p>Kompaktan studio s direktnim pogledom prema Tvrđavi sv. Mihovila. Namjenjen putnicima koji žele autentičan, nepretrpan prostor u starom gradu.</p>
+          <div class="room-amenities">
+            <span>Studio</span><span>Klima</span><span>Wi-Fi</span><span>Kuhinjica</span>
+          </div>
+          <a class="room-cta" href="#rezervacija">Upit za termin →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="lokacija">
+  <div class="loc-strip">
+    <div class="loc-text">
+      <span class="eyebrow reveal">Lokacija</span>
+      <h2 class="reveal" data-split>More i stari grad, <em>na dlanu</em>.</h2>
+      <p class="reveal">Apartmani Ana nalaze se u mirnoj ulici šibenskog starog grada — 300 metara od Katedrale svetog Jakova (UNESCO) i svega 50 metara od morske obale.</p>
+      <p class="reveal">Šibenik je autentičan dalmatinski grad koji nije prerastao u masovni turizam. UNESCO tvrđave, kamene ulice, lokalni konobe i jedno od najljepših zaljeva na Jadranu — sve na pješačkoj distanci.</p>
+      <div class="loc-facts reveal">
+        <div class="f"><div class="n">50 m</div><div class="l">Do mora</div></div>
+        <div class="f"><div class="n">300 m</div><div class="l">Do starog grada</div></div>
+        <div class="f"><div class="n">2 min</div><div class="l">Do katedrale</div></div>
+      </div>
+    </div>
+    <div class="loc-map">
+      <iframe
+        src="https://www.google.com/maps?q=Apartmani+Ana+Sibenik&output=embed"
+        title="Apartmani Ana — Šibenik"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- THINGS TO DO -->
+<section class="section-pad section-dark" id="sto-vidjeti">
+  <div class="wrap">
+    <div class="todo-head">
+      <span class="eyebrow reveal" style="color:var(--accent-soft);">Šibenik & okolica</span>
+      <h2 class="reveal" data-split>Što vas čeka vani</h2>
+    </div>
+    <div class="todo-grid">
+      <div class="todo-card reveal">
+        <div class="todo-icon">⛪</div>
+        <h3>Katedrala sv. Jakova</h3>
+        <p>UNESCO remek-djelo gotičke i renesansne arhitekture — 5 minuta pješice. Jedina katedrala u svijetu izgrađena u potpunosti od kamena, bez opeke.</p>
+      </div>
+      <div class="todo-card reveal">
+        <div class="todo-icon">🏰</div>
+        <h3>Tvrđave UNESCO</h3>
+        <p>Tvrđava sv. Mihovila i sv. Nikole — dvije iznimne fortifikacije s pogledom na more i šibenski kanal. Noćna osvjetljenja ljeti.</p>
+      </div>
+      <div class="todo-card reveal">
+        <div class="todo-icon">🏝</div>
+        <h3>Otoci Kornati</h3>
+        <p>Pakleni arhipelag divljine — izleti brodom do Nacionalnog parka Kornati kreću iz šibenske luke. Cijeli dan na moru.</p>
+      </div>
+      <div class="todo-card reveal">
+        <div class="todo-icon">🌊</div>
+        <h3>Krka i Vodice</h3>
+        <p>Nacionalni park Krka s vodopadima na 15 km, a Vodice — popularna plaža i marina — na svega 8 km od Šibenika.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section-pad" id="galerija">
+  <div class="wrap">
+    <div class="gallery-head">
+      <span class="eyebrow reveal">Galerija</span>
+      <h2 class="reveal" data-split>Kamen, svjetlo i more</h2>
+    </div>
+    <div class="gallery-grid">
+      <figure class="g-tall reveal">
+        <img src="https://loremflickr.com/800/1100/sibenik,old,town,stone?lock=5512" alt="Stari grad Šibenik" loading="lazy" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/800/600/adriatic,sea,view,dalmatia?lock=7743" alt="Pogled na more" loading="lazy" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/800/600/apartment,bedroom,white,mediterranean?lock=3388" alt="Spavaća soba" loading="lazy" />
+      </figure>
+      <figure class="g-wide reveal">
+        <img src="https://loremflickr.com/1600/600/terrace,sea,summer,adriatic?lock=6612" alt="Terasa s pogledom" loading="lazy" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/800/600/sibenik,cathedral,stone,croatia?lock=2241" alt="Katedrala" loading="lazy" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/800/600/apartment,interior,bright,adriatic?lock=9981" alt="Interijer apartmana" loading="lazy" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION / CONTACT -->
+<section class="section-pad section-alt" id="rezervacija">
+  <div class="wrap">
+    <div class="book-block">
+      <div class="book-text">
+        <span class="eyebrow reveal">Upit i rezervacija</span>
+        <h2 class="reveal" data-split>Rezervirajte <em>vaš</em> termin</h2>
+        <p class="reveal">Nema live booking sustava — vjerujemo da je pravi razgovor uvijek bolji od klikanja. Nazovite nas, pišite ili pošaljite upit formom.</p>
+        <div class="book-actions reveal">
+          <a class="big" href="tel:+38522214827">
+            <span class="ic">📞</span> +385 22 214 827
+          </a>
+          <a class="big" href="tel:+38598668506">
+            <span class="ic">📱</span> +385 98 668 506
+          </a>
+          <a class="big" href="https://wa.me/38598668506" target="_blank" rel="noopener">
+            <span class="ic">💬</span> WhatsApp
+          </a>
+          <a class="big" href="mailto:kontakt@ana-sibenik.com">
+            <span class="ic">✉️</span> kontakt@ana-sibenik.com
+          </a>
+        </div>
+      </div>
+      <div class="book-panel reveal">
+        <h3>Pošaljite upit</h3>
+        <form onsubmit="return false;">
+          <div class="form-row">
+            <label>Ime i prezime</label>
+            <input type="text" placeholder="Marija Horvat" autocomplete="name" />
+          </div>
+          <div class="form-row">
+            <label>E-mail</label>
+            <input type="email" placeholder="marija@email.com" autocomplete="email" />
+          </div>
+          <div class="form-row-2">
+            <div class="form-row">
+              <label>Dolazak</label>
+              <input type="date" />
+            </div>
+            <div class="form-row">
+              <label>Odlazak</label>
+              <input type="date" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Apartman</label>
+            <select>
+              <option value="">Nije važno</option>
+              <option>Kaldera — pogled na more</option>
+              <option>Sv. Jakov — uz stari grad</option>
+              <option>Šibenska roza — za obitelij</option>
+              <option>Fortika — studio</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Poruka (opciono)</label>
+            <textarea placeholder="Broj gostiju, posebni zahtjevi..."></textarea>
+          </div>
+          <button class="btn-submit" type="submit">Pošalji upit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand-f">Apartmani <em>Ana</em></div>
+        <p>Obiteljski apartmani u srcu Šibenika — na korak do mora i UNESCO starog grada od 1990.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="tel:+38522214827">+385 22 214 827</a>
+        <a href="tel:+38598668506">+385 98 668 506</a>
+        <a href="mailto:kontakt@ana-sibenik.com">kontakt@ana-sibenik.com</a>
+        <a href="https://wa.me/38598668506" target="_blank">WhatsApp →</a>
+      </div>
+      <div class="foot-col">
+        <h4>Šibenik</h4>
+        <p>Starogradska ulica bb</p>
+        <p>22000 Šibenik</p>
+        <p>Hrvatska (Croatia)</p>
+        <a href="https://maps.google.com/?q=Apartmani+Ana+Sibenik" target="_blank" rel="noopener">Karta →</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Apartmani Ana, Šibenik</span>
+      <span>50 m od mora · 300 m od katedrale</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="mobile-bar">
+  <div class="mobile-bar-inner">
+    <a class="call" href="tel:+38522214827">📞 Pozovite nas</a>
+    <a class="wa" href="https://wa.me/38598668506" target="_blank">💬 WhatsApp</a>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ─── LENIS smooth scroll ───
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    smoothWheel: true
+  });
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // ─── CUSTOM CURSOR ───
+  const cursor = document.getElementById('cursor');
+  if (window.matchMedia('(hover: hover)').matches) {
+    cursor.style.opacity = '0';
+    document.addEventListener('mousemove', e => {
+      gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.28, ease: 'power2.out' });
+      cursor.style.opacity = '1';
+    });
+    document.querySelectorAll('a, button, input, textarea, select').forEach(el => {
+      el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 2.8, duration: 0.2 }));
+      el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, duration: 0.2 }));
+    });
+  }
+
+  // ─── STICKY HEADER ───
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ─── HAMBURGER ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ─── SMOOTH ANCHOR SCROLL ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
+    });
+  });
+
+  if (prefersReduced) return;
+
+  // ─── HERO PARALLAX ───
+  const heroBg = document.getElementById('heroBg');
+  if (heroBg) {
+    gsap.to(heroBg, {
+      yPercent: 22,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
+    });
+  }
+
+  // ─── HERO H1 WORD SPLIT ───
+  document.querySelectorAll('[data-split]').forEach(el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w =>
+      `<span class="word"><span class="word-inner">${w}</span></span>`
+    ).join(' ');
+    const inners = el.querySelectorAll('.word-inner');
+    const trig = el.closest('.hero') ? null : { trigger: el, start: 'top 88%' };
+    if (el.closest('.hero')) {
+      gsap.from(inners, { y: '100%', duration: 0.75, stagger: 0.08, ease: 'power3.out', delay: 0.3 });
+    } else {
+      gsap.from(inners, { y: '100%', duration: 0.65, stagger: 0.07, ease: 'power3.out', scrollTrigger: trig });
+    }
+  });
+
+  // ─── REVEAL ANIMATIONS ───
+  gsap.utils.toArray('.reveal').forEach(el => {
+    if (el.closest('[data-split]')) return;
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: 0.75, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
